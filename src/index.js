@@ -8,6 +8,7 @@ const isNative =
   window.navigator.product &&
   window.navigator.product === 'ReactNative';
 
+console.log("redux-form test:\n");
 export const {
   actionTypes,
   addArrayValue,
