@@ -25,6 +25,7 @@ export const {
   stopAsyncValidation,
   stopSubmit,
   swapArrayValues,
+  arrayMove,
   touch,
   touchWithKey,
   untouch,

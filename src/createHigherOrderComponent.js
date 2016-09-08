@@ -105,7 +105,7 @@ const createHigherOrderComponent = (config,
         const allFields = this.fields;
         const {addArrayValue, asyncBlurFields, autofill, blur, change, destroy, focus, fields, form, initialValues, initialize,
           onSubmit, propNamespace, reset, removeArrayValue, returnRejectedSubmitPromise, startAsyncValidation,
-          startSubmit, stopAsyncValidation, stopSubmit, submitFailed, swapArrayValues, touch, untouch, validate,
+          startSubmit, stopAsyncValidation, stopSubmit, submitFailed, swapArrayValues, arrayMove, touch, untouch, validate,
           ...passableProps} = this.props; // eslint-disable-line no-redeclare
         const {allPristine, allValid, errors, formError, values} = allFields._meta;
 
@@ -181,6 +181,7 @@ const createHigherOrderComponent = (config,
       stopSubmit: PropTypes.func.isRequired,
       submitFailed: PropTypes.func.isRequired,
       swapArrayValues: PropTypes.func.isRequired,
+      arrayMove: PropTypes.func.isRequired,
       touch: PropTypes.func.isRequired,
       untouch: PropTypes.func.isRequired
     };

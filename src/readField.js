@@ -31,7 +31,7 @@ const shouldAsyncValidate = (name, asyncBlurFields) =>
 
 const readField = (state, fieldName, pathToHere = '', fields, syncErrors, asyncValidate, isReactNative, props, callback = () => null, prefix = '') => {
   const {asyncBlurFields, autofill, blur, change, focus, form, initialValues, readonly, addArrayValue,
-    removeArrayValue, swapArrayValues} = props;
+    removeArrayValue, swapArrayValues, arrayMove} = props;
   const dotIndex = fieldName.indexOf('.');
   const openIndex = fieldName.indexOf('[');
   const closeIndex = fieldName.indexOf(']');
@@ -62,6 +62,9 @@ const readField = (state, fieldName, pathToHere = '', fields, syncErrors, asyncV
       });
       Object.defineProperty(dest, 'swapFields', {
         value: (indexA, indexB) => swapArrayValues(pathToHere + key, indexA, indexB)
+      });
+      Object.defineProperty(dest, 'moveField', {
+        value: (indexA, indexB) => arrayMove(pathToHere + key, indexA, indexB)
       });
       return dest;
     };

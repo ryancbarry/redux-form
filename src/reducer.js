@@ -1,5 +1,5 @@
 import { ADD_ARRAY_VALUE, AUTOFILL, BLUR, CHANGE, DESTROY, FOCUS, INITIALIZE, REMOVE_ARRAY_VALUE, RESET, START_ASYNC_VALIDATION,
-  START_SUBMIT, STOP_ASYNC_VALIDATION, STOP_SUBMIT, SUBMIT_FAILED, SWAP_ARRAY_VALUES, TOUCH, UNTOUCH } from './actionTypes';
+  START_SUBMIT, STOP_ASYNC_VALIDATION, STOP_SUBMIT, SUBMIT_FAILED, SWAP_ARRAY_VALUES, ARRAY_MOVE, TOUCH, UNTOUCH } from './actionTypes';
 import mapValues from './mapValues';
 import read from './read';
 import write from './write';
@@ -155,6 +155,15 @@ const behaviors = {
     arrayCopy[indexB] = array[indexA];
     return write(path, arrayCopy, stateCopy);
   },
+  [ARRAY_MOVE](state, {path, indexA, indexB}) {
+    const array = read(path, state);
+    const arrayLength = array.length;
+    if (indexA === indexB || isNaN(indexA) || isNaN(indexB) || indexA >= arrayLength || indexB >= arrayLength ) {
+      return state; // do nothing
+    }
+    const stateCopy = {...state};
+    return write(path, arrayMove(array, indexA, indexB), stateCopy);
+  },
   [TOUCH](state, {fields}) {
     return {
       ...state,
@@ -176,6 +185,19 @@ const behaviors = {
     };
   }
 };
+
+// http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another#5306832
+function arrayMove(array, old_index, new_index) {
+  const arrayCopy = [...array];
+  if (new_index >= arrayCopy.length) {
+    let k = new_index - arrayCopy.length;
+    while ((k--) + 1) {
+      arrayCopy.push(undefined);
+    }
+  }
+  arrayCopy.splice(new_index, 0, arrayCopy.splice(old_index, 1)[0]);
+  return arrayCopy; // for testing purposes
+}
 
 const reducer = (state = initialState, action = {}) => {
   const behavior = behaviors[action.type];

@@ -39,6 +39,7 @@ const stopAsyncValidation = boundActions.stopAsyncValidation;
 const stopSubmit = boundActions.stopSubmit;
 const submitFailed = boundActions.submitFailed;
 const swapArrayValues = boundActions.swapArrayValues;
+const arrayMove = boundActions.arrayMove;
 const touch = boundActions.touch;
 const touchWithKey = boundActions.touchWithKey;
 const untouch = boundActions.untouch;
