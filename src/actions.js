@@ -50,8 +50,8 @@ export const submitFailed = () =>
 export const swapArrayValues = (path, indexA, indexB) =>
   ({type: SWAP_ARRAY_VALUES, path, indexA, indexB});
 
-export const arrayMove = (form, field, from, to) =>
-  ({ type: ARRAY_MOVE, meta: { form, field, from, to } });
+export const arrayMove = (path, indexA, indexB) =>
+  ({ type: ARRAY_MOVE, path, indexA, indexB });
 
 export const touch = (...fields) =>
   ({type: TOUCH, fields});
