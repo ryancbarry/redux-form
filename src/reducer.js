@@ -162,7 +162,10 @@ const behaviors = {
       return state; // do nothing
     }
     const stateCopy = {...state};
-    return write(path, arrayMove(array, indexA, indexB), stateCopy);
+    console.log("ARRAY_MOVE: array begin:\n", array);
+    const arrayCopy = arrayMove(array, indexA, indexB);
+    console.log(">: array end:\n", arrayCopy);
+    return write(path, arrayCopy, stateCopy);
   },
   [TOUCH](state, {fields}) {
     return {
