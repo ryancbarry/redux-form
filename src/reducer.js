@@ -156,17 +156,13 @@ const behaviors = {
     return write(path, arrayCopy, stateCopy);
   },
   [ARRAY_MOVE](state, {path, indexA, indexB}) {
-    console.log("ARRAY_MOVE:\n");
-    console.log(">: state, path, indexA, indexB:\n", state, path, indexA, indexB);
     const array = read(path, state);
     const arrayLength = array.length;
     if (indexA === indexB || isNaN(indexA) || isNaN(indexB) || indexA >= arrayLength || indexB >= arrayLength ) {
       return state; // do nothing
     }
     const stateCopy = {...state};
-    console.log(">: array begin:\n", array);
     const arrayCopy = arrayMove(array, indexA, indexB);
-    console.log(">: array end:\n", arrayCopy);
     return write(path, arrayCopy, stateCopy);
   },
   [TOUCH](state, {fields}) {
